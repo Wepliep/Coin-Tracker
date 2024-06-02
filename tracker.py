@@ -53,3 +53,5 @@ df = pd.DataFrame(prices, columns=["timestamp", "price"])
 df["date"] = pd.to_datetime(df["timestamp"], unit='ms')
 df.drop("timestamp", axis=1, inplace=True)
 print(df)
+
+df.to_csv(f"{token}_prices_last_30_days_try.csv", index=False)
