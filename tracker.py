@@ -21,6 +21,21 @@ parser = argparse.ArgumentParser(
     formatter_class=argparse.RawTextHelpFormatter
 )
 
+
+
+token = args.token.upper()
+if token not in api_urls:
+    print(f"Error: Token '{token}' not found in the configuration file.")
+    sys.exit(1)
+
+api_url = api_urls[token]
+
+params = {
+    "vs_currency": "try",  # Türk Lirası
+    "days": "30"  # Son 30 gün
+}
+
+
 response = requests.get(api_url, params=params)
 data = response.json()
 prices = data["prices"]
