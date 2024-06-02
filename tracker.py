@@ -15,3 +15,9 @@ except FileNotFoundError:
 except json.JSONDecodeError as e:
     print(f"HATA:  JSON kod çözme hatası 'url.config': {e}")
     sys.exit(1)
+
+parser = argparse.ArgumentParser(
+    description="Kripto para fiyatlarını alın ve grafiği çizin.",
+    formatter_class=argparse.RawTextHelpFormatter
+)
+
