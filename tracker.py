@@ -21,3 +21,10 @@ parser = argparse.ArgumentParser(
     formatter_class=argparse.RawTextHelpFormatter
 )
 
+response = requests.get(api_url, params=params)
+data = response.json()
+prices = data["prices"]
+df = pd.DataFrame(prices, columns=["timestamp", "price"])
+df["date"] = pd.to_datetime(df["timestamp"], unit='ms')
+df.drop("timestamp", axis=1, inplace=True)
+print(df)
