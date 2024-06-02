@@ -22,6 +22,16 @@ parser = argparse.ArgumentParser(
 )
 
 
+supported_tokens = ', '.join(api_urls.keys())
+
+parser.add_argument(
+    "-t", "--token",
+    type=str,
+    required=True,
+    help=f"Token symbol (e.g., SHIB, BND, DOGE). Supported tokens: {supported_tokens}"
+)
+args = parser.parse_args()
+
 
 token = args.token.upper()
 if token not in api_urls:
