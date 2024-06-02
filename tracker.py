@@ -55,3 +55,13 @@ df.drop("timestamp", axis=1, inplace=True)
 print(df)
 
 df.to_csv(f"{token}_prices_last_30_days_try.csv", index=False)
+
+plt.figure(figsize=(12, 6))
+plt.plot(df["date"], df["price"], label=f"{token}/TRY Fiyatı")
+plt.title(f"Son 1 Ay {token} Fiyatları - Türk Lirası (TRY)")
+plt.xlabel("Tarih")
+plt.ylabel("Fiyat (TRY)")
+plt.legend()
+plt.grid(True)
+plt.xticks(rotation=45)
+plt.show()
