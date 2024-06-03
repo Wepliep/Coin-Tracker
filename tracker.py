@@ -28,14 +28,14 @@ parser.add_argument(
     "-t", "--token",
     type=str,
     required=True,
-    help=f"Token symbol (e.g., SHIB, BND, DOGE). Supported tokens: {supported_tokens}"
+    help=f"Token sembolleri (e.g., SHIB, BND, DOGE). Desteklenen topkenlar: {supported_tokens}"
 )
 args = parser.parse_args()
 
 
 token = args.token.upper()
 if token not in api_urls:
-    print(f"Error: Token '{token}' not found in the configuration file.")
+    print(f"HATA: Token '{token}' konfigürasyon dosyasında bulunamadı.")
     sys.exit(1)
 
 api_url = api_urls[token]
@@ -54,7 +54,7 @@ df["date"] = pd.to_datetime(df["timestamp"], unit='ms')
 df.drop("timestamp", axis=1, inplace=True)
 print(df)
 
-df.to_csv(f"{token}_prices_last_30_days_try.csv", index=False)
+df.to_csv(f"{token}_icin_30_gunluk_takip.csv", index=False)
 
 plt.figure(figsize=(12, 6))
 plt.plot(df["date"], df["price"], label=f"{token}/TRY Fiyatı")
